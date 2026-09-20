@@ -1,0 +1,40 @@
+node_modules/
+dist/
+.env
+.env.local
+*.pyc
+__pycache__/
+*.egg-info/
+.venv/
+venv/
+.DS_Store
+.vscode/
+.idea/
+
+# --- Repo cleanup for submission ---
+# Stale duplicate frontend copy -- the real, live frontend is src/ at the
+# repo root (what vite.config.js and index.jsx actually build/import).
+/frontend/
+
+# One-off local dev/debug scripts and a browser driver binary, not part of
+# the functional prototype itself.
+/kohler_detail_debug.py
+/kohler_find_links.py
+/kohler_find_tile_us.py
+/kohler_pagination_check.py
+/kohler_toilets_diagnostic.py
+/kohler_us_full_scraper.py
+/chromedriver-win64/
+
+# Stale top-level copies of the agent modules from before the code was
+# organized into backend/ -- backend/*.py are the ones the app actually
+# runs (see README).
+/extraction_agent.py
+/kohler_system.py
+/placement_agent.py
+/recommendation_agent.py
+
+# Raw catalog-scraping working data -- superseded by the curated
+# backend/data/products.json the app actually loads at runtime.
+/archive_india/
+/kohler_products_us/

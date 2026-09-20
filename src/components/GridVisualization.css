@@ -1,0 +1,278 @@
+.grid-visualization-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 1.5rem;
+  gap: 0.65rem;
+  overflow: hidden;
+  background: var(--panel-bg);
+}
+
+.visualization-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.grid-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 0.4rem 0;
+}
+
+.visualization-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.dimensions {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--gold-bright);
+  background: var(--panel-bg-raised);
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.view-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.view-toggle-button {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--panel-bg-raised);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.view-toggle-button:hover {
+  border-color: var(--gold-dim);
+  color: var(--text);
+}
+
+.view-toggle-button.active {
+  background: var(--gold);
+  color: #1a1408;
+  border-color: var(--gold);
+}
+
+.clearance-badge {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.clearance-ok {
+  color: var(--success);
+}
+
+.clearance-warn {
+  color: var(--warning);
+}
+
+.visualization-content {
+  /* This is the actual 3D/plan scene -- it must always get the lion's
+     share of the panel's height. The blocks below it (constraints,
+     legend) are given their own capped, independently-scrollable height
+     instead of flex-shrink:0, so a long violations list (common once a
+     room is tight) can no longer eat into the scene's real estate and
+     shrink it down to a sliver. */
+  flex: 5 1 0;
+  min-height: 260px;
+  display: flex;
+}
+
+.symbolic-grid-wrapper {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.symbolic-grid {
+  width: 100%;
+  height: 100%;
+}
+
+.grid-product-link {
+  cursor: pointer;
+}
+
+.grid-product-link path,
+.grid-product-link rect {
+  transition: opacity 0.15s ease;
+}
+
+.grid-product-link:hover path,
+.grid-product-link:hover rect {
+  opacity: 0.82;
+}
+
+.no-placement {
+  color: var(--text-dim);
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.grid-hint {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: center;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.constraints-status {
+  background: var(--panel-bg-raised);
+  border-radius: 6px;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--border);
+  /* Capped and internally scrollable (see .violations-list) so a bundle
+     with several violations doesn't push the actual 3D scene down to a
+     sliver -- this box now has a hard ceiling on how much of the panel
+     it can take. */
+  flex: 0 1 auto;
+  max-height: 130px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.constraints-status.satisfied {
+  border-color: rgba(111, 191, 115, 0.4);
+}
+
+.constraints-status.violated {
+  border-color: rgba(224, 163, 57, 0.4);
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+  flex-shrink: 0;
+}
+
+.status-header .icon {
+  font-size: 1.15rem;
+}
+
+.constraints-status.satisfied .icon {
+  color: var(--success);
+}
+
+.constraints-status.violated .icon {
+  color: var(--warning);
+}
+
+.status-header h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.violations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.violation {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.5rem 0.65rem;
+  background: var(--panel-bg);
+  border-radius: 4px;
+  border-left: 2px solid var(--warning);
+}
+
+.violation-icon {
+  font-size: 1rem;
+  color: var(--warning);
+  flex-shrink: 0;
+}
+
+.violation p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.legend {
+  background: var(--panel-bg-raised);
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border);
+  /* Same reasoning as .constraints-status: capped so a long category
+     list can't quietly eat into the 3D scene's space. */
+  flex: 0 1 auto;
+  max-height: 84px;
+  overflow-y: auto;
+}
+
+.legend h4 {
+  margin: 0 0 0.4rem 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.legend-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.35rem 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
